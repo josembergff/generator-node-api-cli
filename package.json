@@ -1,0 +1,27 @@
+{
+  "name": "generator-node-api-cli",
+  "version": "1.1.6",
+  "description": "Node structure builder for creating a ready-to-use api.",
+  "files": [
+    "generators"
+  ],
+  "main": "generators/app/index.js",
+  "keywords": [
+    "yeoman-generator",
+    "node api",
+    "node cli",
+    "api node",
+    "node api cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josembergff/generator-node-api-cli"
+  },
+  "author": "Josemberg Ferreira",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-rename": "^1.2.2",
+    "yeoman-generator": "^2.0.3",
+    "yosay": "^2.0.1"
+  }
+}

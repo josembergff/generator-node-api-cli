@@ -1,0 +1,30 @@
+{
+  "name": "<%= nomeProjeto %>",
+  "version": "0.0.1",
+  "description": "<%= descricaoProjeto %>",
+  "main": "./bin/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/server.js",
+    "dev": "nodemon ./bin/server.js",
+    "cacheGit": "git config credential.helper 'cache --timeout=9999999'"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
+    "body-parser": "^1.18.2",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "generate-password": "^1.4.0",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.1.1",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1",
+    "moment": "^2.20.1",
+    "mongoose": "^5.0.3",
+    "useragent": "^2.3.0",
+    "uuid": "^3.2.1"
+  }
+}
