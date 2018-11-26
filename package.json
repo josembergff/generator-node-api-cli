@@ -1,6 +1,6 @@
 {
   "name": "generator-node-api-cli",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "Node structure builder for creating a ready-to-use api.",
   "files": [
     "generators"
@@ -20,8 +20,8 @@
   "author": "Josemberg Ferreira",
   "license": "ISC",
   "dependencies": {
-    "gulp-rename": "^1.2.2",
-    "yeoman-generator": "^2.0.3",
-    "yosay": "^2.0.1"
+    "gulp-rename": "^1.4.0",
+    "yeoman-generator": "^2.0.5",
+    "yosay": "^2.0.2"
   }
 }
