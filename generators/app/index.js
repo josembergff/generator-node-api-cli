@@ -10,7 +10,9 @@ module.exports = class extends Generator {
   }
 
   initializing() {
-    this.log(yosay('Welcome to the API project manager at Node.js!'));
+    if (!this.options.direct) {
+      this.log(yosay('Welcome to the API project manager at Node.js!'));
+    }
   }
 
   default() {}
