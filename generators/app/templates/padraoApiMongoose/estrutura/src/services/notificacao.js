@@ -42,36 +42,7 @@ const finalizar = async (notificacao, enviado) => {
 
 const listaEmails = notificacao => {
   const retorno = [];
-  if (notificacao.grupo && notificacao.grupo.usuarios) {
-    modules.lodash.forEach(notificacao.grupo.usuarios, (linha, index) => {
-      if (
-        notificacao.criador &&
-        notificacao.criador.email &&
-        notificacao.criador.email == linha.email
-      ) {
-      } else if (linha.email) {
-        let novoValor = {
-          mobile: temMobile(linha.dispositivos),
-          online: linha.online,
-          email: linha.email
-        };
-        retorno.push(novoValor);
-      }
-    });
-    if (
-      notificacao.grupo.criador.email &&
-      notificacao.criador.email &&
-      notificacao.grupo.criador.email != notificacao.criador.email
-    ) {
-      let novoValor = {
-        mobile: temMobile(notificacao.grupo.criador.dispositivos),
-        online: notificacao.grupo.criador.online,
-        email: notificacao.grupo.criador.email
-      };
-      retorno.push(novoValor);
-    }
-  } else if (
-    !notificacao.grupo &&
+  if (
     notificacao.criador &&
     notificacao.criador.email
   ) {
@@ -95,7 +66,7 @@ const enviarNotificacoes = async () => {
     modules.lodash.forEach(lista, (linha, index) => {
       try {
         emails = listaEmails(linha);
-        const objetoEnvio = { grupo: linha.grupo, usuario: linha.criador };
+        const objetoEnvio = { usuario: linha.criador };
 
         modules.lodash.forEach(emails, (item, index) => {
           itemAtual = item;
@@ -177,7 +148,6 @@ module.exports = {
     titulo,
     mensagem,
     usuario,
-    grupo,
     somenteEmail,
     imediato,
     dataInicio
@@ -198,10 +168,6 @@ module.exports = {
 
       if (dataInicio) {
         notificacao.dataEnvio = dataInicio;
-      }
-
-      if (grupo) {
-        notificacao.grupo = grupo.id || grupo._id;
       }
 
       if (somenteEmail == undefined || somenteEmail == null) {

@@ -27,20 +27,6 @@ module.exports = {
         ]
       })
       .populate("criador")
-      .populate({
-        path: "grupo",
-        model: "Grupo",
-        populate: [
-          {
-            path: "usuarios",
-            model: "Usuario"
-          },
-          {
-            path: "criador",
-            model: "Usuario"
-          }
-        ]
-      })
       .populate("editor");
     return lista;
   },
@@ -49,20 +35,6 @@ module.exports = {
     const objeto = await modelo()
       .findById(id)
       .populate("criador")
-      .populate({
-        path: "grupo",
-        model: "Grupo",
-        populate: [
-          {
-            path: "usuarios",
-            model: "Usuario"
-          },
-          {
-            path: "criador",
-            model: "Usuario"
-          }
-        ]
-      })
       .populate("editor");
     return objeto;
   },

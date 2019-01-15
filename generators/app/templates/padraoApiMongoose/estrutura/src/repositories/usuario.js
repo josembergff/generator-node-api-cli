@@ -1,5 +1,4 @@
 const generic = require('./generic');
-const modules = require('../config/modules');
 
 const padrao = () => {
   generic.modelo('Usuario');
@@ -10,9 +9,6 @@ const modelo = () => {
   return generic.modelo('Usuario');
 };
 
-const modeloGrupo = () => {
-  return generic.modelo('Grupo');
-};
 module.exports = {
   padrao: padrao,
 
@@ -53,21 +49,9 @@ module.exports = {
   },
 
   buscarOnline: async idUsuario => {
-    const lista = await modeloGrupo().find(
-      {
-        $or: [{ criador: idUsuario }, { usuarios: idUsuario }]
-      },
-      ['nome', 'usuarios', 'criador']
-    );
-    let usuarios = modules.lodash.map(lista, 'criador');
-    let compartilhados = modules.lodash.map(lista, 'usuarios');
-    modules.lodash.forEach(compartilhados, e => {
-      usuarios = usuarios.concat(e);
-    });
     const objeto = await modelo().find(
       {
         $and: [
-          { _id: { $in: usuarios } },
           { _id: { $ne: idUsuario } },
           { online: true }
         ]
@@ -83,20 +67,9 @@ module.exports = {
   },
 
   todosUsuarios: async idUsuario => {
-    const lista = await modeloGrupo().find(
-      {
-        $or: [{ criador: idUsuario }, { usuarios: idUsuario }]
-      },
-      ['nome', 'usuarios', 'criador']
-    );
-    let usuarios = modules.lodash.map(lista, 'criador');
-    let compartilhados = modules.lodash.map(lista, 'usuarios');
-    modules.lodash.forEach(compartilhados, e => {
-      usuarios = usuarios.concat(e);
-    });
     const objeto = await modelo().find(
       {
-        $and: [{ _id: { $in: usuarios } }, { _id: { $ne: idUsuario } }]
+        $and: [{ _id: { $ne: idUsuario } }]
       },
       ['nome', 'sobrenome', 'online'],
       {
@@ -136,18 +109,10 @@ module.exports = {
     return objeto;
   },
 
-  usuariosGrupoOffline: async (idGrupo, idUsuario) => {
-    const grupo = await modeloGrupo()
-      .findById(idGrupo)
-      .populate('criador')
-      .populate('usuarios');
-    let usuarios = [grupo.criador.id];
-    modules.lodash.forEach(grupo.usuarios, e => {
-      usuarios.push(e.id);
-    });
+  usuariosOffline: async (idUsuario) => {
+    
     const objeto = await modelo().find({
       $and: [
-        { _id: { $in: usuarios } },
         { _id: { $ne: idUsuario } },
         { online: { $ne: true } }
       ]

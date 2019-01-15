@@ -1,9 +1,6 @@
 const models = global.appTest.get('models');
 
 beforeEach(() => {
-  models.grupo.remove({}).then(data => {
-    console.info('Usuarios foram zerados.');
-  });
 });
 
 describe('Repositorio usuario', () => {

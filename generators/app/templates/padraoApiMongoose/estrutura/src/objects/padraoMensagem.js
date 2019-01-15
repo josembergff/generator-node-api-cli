@@ -1,7 +1,6 @@
 class PadraoMensagem {
-  constructor(mensagem, grupo, idConversa) {
+  constructor(mensagem, idConversa) {
     this.mensagem = mensagem;
-    this.grupo = grupo;
     this.idConversa = idConversa;
   }
 }

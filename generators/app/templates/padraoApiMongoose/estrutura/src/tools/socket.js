@@ -1,15 +1,12 @@
 const parameters = require('../config/parameters');
 const padraoMensagem = require('../objects/padraoMensagem');
-const grupo = require('../objects/grupo');
 const mensagem = require('../objects/mensagem');
 const modules = require('../config/modules');
 const autenticacao = require('../services/autenticacao');
 const usuarioRepo = require('../repositories/usuario');
-const grupoRepo = require('../repositories/grupo');
 const socket = require('../enums/socket');
 
 const objetoMensagem = mensagem;
-const objetoGrupo = grupo;
 const objetoPadraoMensagem = padraoMensagem;
 let dadosCliente = [];
 
@@ -46,21 +43,7 @@ module.exports = app => {
           usuarioRepo.marcarOnline(usuario._id, true);
           client.join(usuario.email);
           dadosCliente[client.id] = { u: usuario };
-          grupoRepo.listaCombo(usuario._id).then(grupos => {
-            if (grupos && grupos.length > 0) {
-              modules.lodash.forEach(grupos, (g, i) => {
-                client.join(g._id);
-                let textoEnvio = nomeCompleto + ' está online';
-                let msg = new objetoMensagem(textoEnvio, null, usuario);
-                let grupo = new objetoGrupo(g._id, g.nome);
-                let padrao = new objetoPadraoMensagem(msg, grupo);
-                client.broadcast.to(g._id).emit(socket.Conectado, padrao);
-              });
-              dadosCliente[client.id] = { u: usuario, g: grupos };
-            } else {
-              console.info('Socket: Usuário sem grupo.');
-            }
-          });
+          
         }
       });
 
@@ -78,8 +61,7 @@ module.exports = app => {
               null,
               dadosCliente[client.id].u
             );
-            let grupo = new objetoGrupo(null, null);
-            let padrao = new objetoPadraoMensagem(msg, grupo);
+            let padrao = new objetoPadraoMensagem(msg);
             client.broadcast.to(g._id).emit(socket.Desconectado, padrao);
           });
           delete dadosCliente[client.id];

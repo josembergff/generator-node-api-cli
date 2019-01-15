@@ -7,6 +7,7 @@ const padrao = () => {
 const modelo = () => {
   return generic.modelo("RegistroAcesso");
 };
+
 module.exports = {
   padrao: padrao
 };

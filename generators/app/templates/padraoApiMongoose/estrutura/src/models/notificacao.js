@@ -45,11 +45,6 @@ const schema = new modules.mongoose.Schema({
     type: String,
     required: false
   },
-  grupo: {
-    type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Grupo",
-    required: false
-  },
   criacao: {
     type: Date,
     required: true,

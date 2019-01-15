@@ -9,7 +9,6 @@ module.exports = {
   AlteracaoStatus: "Alteração de status",
   Edicao: "Alteração",
   NovoDispositivo: "Novo dispositivo",
-  CompartilhamentoGrupo: "Compartilhamento de grupo",
   Frequencia: "Frequência de repetição",
   Atrasos: "Atrasos",
   ConversaPerdida: "ConversaPerdida"
