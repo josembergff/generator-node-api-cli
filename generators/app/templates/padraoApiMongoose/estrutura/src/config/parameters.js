@@ -3,6 +3,8 @@ const baseTeste = 'mongodb://api:api@localhost:27017/nomebaseteste';
 
 module.exports = {
   chavePrivada: 'deea259b-f46c-41ad-b274-c5cadc49ff72-api<%= nomeProjeto %>',
+  nomeProjeto: `<%= nomeProjeto %>`,
+  descricaoProjeto: `<%= descricaoProjeto %>`,
   emailEnvio: `<%= nomeProjeto %> <${process.env.SMTP_EMAIL_USUARIO}>`,
   emailSenha: process.env.SMTP_SENHA_USUARIO,
   emailUsuario: process.env.SMTP_EMAIL_USUARIO,

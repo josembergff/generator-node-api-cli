@@ -25,11 +25,11 @@ module.exports = {
       const mensagem =
         "Olá, <strong>" +
         req.body.nome +
-        "</strong>, seja bem vindo ao Easy Objective!";
+        `</strong>, seja bem vindo ao ${parameters.nomeProjeto}!`;
       usuarioExistente = await usuarioRepo.buscarEmail(req.body.email);
       await notificacaoServ.nova(
         notificacaoEnum.BoasVindas,
-        "Bem vindo ao Easy Objective",
+        `Bem vindo ao ${parameters.nomeProjeto}`,
         mensagem,
         usuarioExistente,
         null,
@@ -150,7 +150,7 @@ module.exports = {
 
       await notificacaoServ.nova(
         notificacaoEnum.ReseteSenha,
-        "Recuperar login do Easy Objective",
+        `Recuperar login do ${parameters.nomeProjeto}`,
         mensagem,
         usuarioExistente,
         null,
@@ -185,7 +185,7 @@ module.exports = {
 
       await notificacaoServ.nova(
         notificacaoEnum.AtualizacaoSenha,
-        "Recuperar login do Easy Objective",
+        `Recuperar login do ${parameters.nomeProjeto}`,
         mensagem,
         usuarioExistente,
         null,
@@ -257,17 +257,10 @@ module.exports = {
               ipUsuario = req.connection.remoteAddress.replace("::ffff:", "");
             }
             const mensagem =
-              "Foi adicionado um novo dispositivo. Modelo: " +
-              req.body.modelo +
-              ", Plataforma: " +
-              req.body.plataforma +
-              ", IP: " +
-              ipUsuario +
-              ". <br><br>Se foi você que acessou nada a ser feito, caso não tenha sido uma ação sua, por favor entre em contato conosco: contact@easyobjective.com.";
-
+              `Foi adicionado um novo dispositivo. Modelo: ${req.body.modelo}, Plataforma: ${req.body.plataforma}, IP: ${ipUsuario}. <br><br>Se foi você que acessou nada a ser feito, caso não tenha sido uma ação sua, por favor entre em contato conosco: contact@${parameters.nomeProjeto}.com.`;
             await notificacaoServ.nova(
               notificacaoEnum.NovoDispositivo,
-              "Novo dispositivo adicionado no Easy Objective",
+              `Novo dispositivo adicionado no ${parameters.nomeProjeto}`,
               mensagem,
               usuarioAtual,
               null,
