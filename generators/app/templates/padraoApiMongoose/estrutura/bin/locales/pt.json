@@ -1,5 +1,5 @@
 {
   "SISTEMA": {
-    "RODANDO": "API Rodando"
+    "RODANDO": "API <%= nomeExternoProjeto %> Rodando"
   }
 }

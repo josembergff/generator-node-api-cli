@@ -13,6 +13,9 @@
     "api node",
     "node api cli"
   ],
+  "scripts": {
+    "nac": "yo node-api-cli"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/josembergff/generator-node-api-cli"
@@ -22,6 +25,7 @@
   "dependencies": {
     "gulp-rename": "^1.4.0",
     "yeoman-generator": "^2.0.5",
+    "yo": "^2.0.5",
     "yosay": "^2.0.2"
   }
 }
