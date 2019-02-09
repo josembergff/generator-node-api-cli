@@ -1,4 +1,4 @@
-const baseLocal = '<%= chaveMongo %>';
+const baseLocal = '<%=chaveMongo%>';
 const baseTeste = 'mongodb://api:api@localhost:27017/nomebaseteste';
 
 module.exports = {
