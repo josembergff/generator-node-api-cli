@@ -22,14 +22,16 @@ module.exports = {
 
       await usuarioRepo.padrao().criar(req.body);
 
-      const mensagem =
-        'Olá, <strong>' +
-        req.body.nome +
-        `</strong>, seja bem vindo ao ${parameters.nomeProjeto}!`;
+      const mensagem = res.__('SISTEMA.EMAIL.BEM_VINDO', {
+        nome: req.body.nome,
+        nomeProjeto: parameters.nomeProjeto
+      });
       usuarioExistente = await usuarioRepo.buscarEmail(req.body.email);
       await notificacaoServ.nova(
         notificacaoEnum.BoasVindas,
-        `Bem vindo ao ${parameters.nomeProjeto}`,
+        res.__('SISTEMA.EMAIL.BEM_VINDO_PROJETO', {
+          nomeProjeto: parameters.nomeProjeto
+        }),
         mensagem,
         usuarioExistente,
         null,

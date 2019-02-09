@@ -1,7 +1,7 @@
 {
-  "name": "<%= nomeProjeto %>",
+  "name": "<%=nomeProjeto%>",
   "version": "0.0.1",
-  "description": "<%= descricaoProjeto %>",
+  "description": "<%=descricaoProjeto%>",
   "main": "./bin/server.js",
   "jest": {
     "setupFiles": [

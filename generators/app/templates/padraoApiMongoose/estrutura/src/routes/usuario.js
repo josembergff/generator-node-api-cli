@@ -1,6 +1,7 @@
 const autenticacao = require('../services/autenticacao');
 const registroAcessoCtrl = require('../controllers/registroAcesso');
 const usuarioCtrl = require('../controllers/usuario');
+const i18n = require('i18n');
 
 module.exports = app => {
   app
