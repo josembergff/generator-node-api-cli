@@ -1,6 +1,6 @@
 {
   "name": "generator-node-api-cli",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "Node structure builder for creating a ready-to-use api.",
   "files": [
     "generators"

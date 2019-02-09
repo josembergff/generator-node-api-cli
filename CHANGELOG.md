@@ -1,11 +1,22 @@
-Change Log
-===
+# Change Log
 
-v1.1.0
----
+## v2.0.0
 
 <!-- ## :tada: Features -->
+
 ## Features
+
+- Nova estrutura MVC.
+- Controle de translate já configurado.
+- Controle de SocketIO já configurado.
+- Controle de auto load já configurado.
+
+## v1.1.0
+
+<!-- ## :tada: Features -->
+
+## Features
+
 - Adicionado a opção `Criar novo projeto API com MongoDB`, que cria uma estrutura padrão de projeto API em NodeJs utilizando o MongoDB;
 - Adicionado a opção `Criar nova Entidade com MongoDB`, que cria um modelo, controle, repositório e rota padrão da entidade utilizando o MongoDB;
 - Adicionado a opção `Criar nova Rota`, que cria uma rota padrão de projeto API em NodeJs;
@@ -16,4 +27,5 @@ v1.1.0
 <!-- ## :hammer_and_wrench: Bugfixes -->
 
 ## Bugfixes
+
 Nenhum reportado até o momento.
