@@ -39,11 +39,11 @@ module.exports = {
         true
       );
       res.status(200).send({
-        msg: 'Usuário cadastrado com sucesso!'
+        msg: res.__('SISTEMA.CRUD.CADASTRO_SUCESSO', { entidade: 'Usuário' })
       });
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao processar o cadastro de usuário',
+        msg: res.__('SISTEMA.CRUD.CADASTRO_FALHA', { entidade: 'Usuário' }),
         msgErro: e
       });
     }
@@ -57,7 +57,7 @@ module.exports = {
       );
       if (!usuario) {
         res.status(500).send({
-          msg: 'Usuário e/ou senha inválidos'
+          msg: res.__('SISTEMA').USUARIO.USUARIO_INVALIDO
         });
         return;
       }
@@ -84,7 +84,7 @@ module.exports = {
       });
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao processar a autenticação',
+        msg: res.__('SISTEMA').USUARIO.FALHA_AUTENTICAR,
         msgErro: e
       });
     }
@@ -98,7 +98,7 @@ module.exports = {
 
       if (!usuario) {
         res.status(500).send({
-          msg: 'Cliente não encontrado'
+          msg: res.__('SISTEMA').USUARIO.USUARIO_NAO_ENCONTRADO
         });
         return;
       }
@@ -122,7 +122,7 @@ module.exports = {
       });
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao processar a renovação de token',
+        msg: res.__('SISTEMA').USUARIO.FALHA_RENOVACAO_TOKEN,
         msgErro: e
       });
     }
@@ -145,14 +145,15 @@ module.exports = {
       usuarioExistente.edicao = new Date();
 
       await usuarioRepo.padrao().editar(usuarioExistente._id, usuarioExistente);
-      const mensagem =
-        'Para seu login ser recuperado acesse o sistema com a senha temporária "' +
-        temporaria +
-        '" para definir uma nova senha.';
+      const mensagem = res.__('SISTEMA.EMAIL.SENHA_TEMPORARIA', {
+        temporaria: temporaria
+      });
 
       await notificacaoServ.nova(
         notificacaoEnum.ReseteSenha,
-        `Recuperar login do ${parameters.nomeProjeto}`,
+        res.__('SISTEMA.EMAIL.RECUPERAR_LOGIN_PROJETO', {
+          nomeProjeto: parameters.nomeProjeto
+        }),
         mensagem,
         usuarioExistente,
         null,
@@ -161,11 +162,11 @@ module.exports = {
       );
 
       res.status(200).send({
-        msg: 'Recuperação de senha enviada por email.'
+        msg: res.__('SISTEMA').USUARIO.FALHA_RECUPERACAO_SENHA
       });
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao processar a recuperação de login',
+        msg: '',
         msgErro: e
       });
     }
@@ -183,11 +184,13 @@ module.exports = {
       usuarioExistente.edicao = new Date();
 
       await usuarioRepo.padrao().editar(usuarioExistente._id, usuarioExistente);
-      const mensagem = 'A seu login foi atualizado com sucesso.';
+      const mensagem = res.__('SISTEMA').EMAIL.LOGIN_ATUALIZADO;
 
       await notificacaoServ.nova(
         notificacaoEnum.AtualizacaoSenha,
-        `Recuperar login do ${parameters.nomeProjeto}`,
+        res.__('SISTEMA.EMAIL.RECUPERAR_LOGIN_PROJETO', {
+          nomeProjeto: parameters.nomeProjeto
+        }),
         mensagem,
         usuarioExistente,
         null,
@@ -196,11 +199,15 @@ module.exports = {
       );
 
       res.status(200).send({
-        msg: 'Login atualizado.'
+        msg: res.__('SISTEMA.CRUD.EDICAO_SUCESSO', {
+          entidade: 'Login'
+        })
       });
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao processar a atualização do login',
+        msg: res.__('SISTEMA.CRUD.EDICAO_FALHA', {
+          entidade: 'Login'
+        }),
         msgErro: e
       });
     }
@@ -258,16 +265,17 @@ module.exports = {
             ) {
               ipUsuario = req.connection.remoteAddress.replace('::ffff:', '');
             }
-            const mensagem = `Foi adicionado um novo dispositivo. Modelo: ${
-              req.body.modelo
-            }, Plataforma: ${
-              req.body.plataforma
-            }, IP: ${ipUsuario}. <br><br>Se foi você que acessou nada a ser feito, caso não tenha sido uma ação sua, por favor entre em contato conosco: contact@${
-              parameters.nomeProjeto
-            }.com.`;
+            const mensagem = res.__('SISTEMA.EMAIL.DISPOSITIVO_ADICIONADO', {
+              modelo: req.body.modelo,
+              plataforma: req.body.plataforma,
+              ipUsuario: ipUsuario,
+              nomeProjeto: parameters.nomeProjeto
+            });
             await notificacaoServ.nova(
               notificacaoEnum.NovoDispositivo,
-              `Novo dispositivo adicionado no ${parameters.nomeProjeto}`,
+              res.__('SISTEMA.EMAIL.NOVO_DISPOSITIVO_ADICIONADO', {
+                nomeProjeto: parameters.nomeProjeto
+              }),
               mensagem,
               usuarioAtual,
               null,
@@ -282,12 +290,11 @@ module.exports = {
         });
       }
       res.status(200).send({
-        msg: 'Login atualizado com dados do dispositivo.'
+        msg: res.__('SISTEMA').USUARIO.LOGIN_DISPOSITIVO_ATUALIZADO
       });
     } catch (e) {
       res.status(500).send({
-        msg:
-          'Falha ao processar a atualização do login com os dados do dispositivo.',
+        msg: res.__('SISTEMA').USUARIO.FALHA_LOGIN_DISPOSITIVO_ATUALIZADO,
         msgErro: e
       });
     }
@@ -300,7 +307,7 @@ module.exports = {
       res.status(200).send(lista);
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao buscar usuários por nome.',
+        msg: res.__('SISTEMA').USUARIO.FALHA_USUARIO_NOME,
         msgErro: e
       });
     }
@@ -314,7 +321,7 @@ module.exports = {
       res.status(200).send(lista);
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao buscar usuários online.',
+        msg: res.__('SISTEMA').USUARIO.FALHA_USUARIOS_ONLINE,
         msgErro: e
       });
     }
@@ -328,7 +335,7 @@ module.exports = {
       res.status(200).send(lista);
     } catch (e) {
       res.status(500).send({
-        msg: 'Falha ao buscar todos os usuários.',
+        msg: res.__('SISTEMA').USUARIO.FALHA_LISTA_USUARIOS,
         msgErro: e
       });
     }
