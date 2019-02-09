@@ -1,8 +1,8 @@
-const modules = require("../config/modules");
-const parameters = require("../config/parameters");
-const autenticacao = require("../services/autenticacao");
-const registroAcesso = require("../repositories/registroAcesso");
-const acessoEnum = require("../enums/acesso");
+const modules = require('../config/modules');
+const parameters = require('../config/parameters');
+const autenticacao = require('../services/autenticacao');
+const registroAcesso = require('../repositories/registroAcesso');
+const acessoEnum = require('../enums/acesso');
 
 const unirRequisicao = async req => {
   let retorno = {};
@@ -12,9 +12,9 @@ const unirRequisicao = async req => {
 };
 
 const prepararRequisicao = async req => {
-  let ipUsuario = "::1";
+  let ipUsuario = '::1';
 
-  const navegadorUsuario = modules.useragent.is(req.headers["user-agent"]);
+  const navegadorUsuario = modules.useragent.is(req.headers['user-agent']);
 
   if (
     req &&
@@ -22,14 +22,14 @@ const prepararRequisicao = async req => {
     req.connection.remoteAddress &&
     req.connection.remoteAddress.replace
   ) {
-    ipUsuario = req.connection.remoteAddress.replace("::ffff:", "");
+    ipUsuario = req.connection.remoteAddress.replace('::ffff:', '');
   }
   let usuarioCriador = await autenticacao.idUsuarioToken(req);
   if (!usuarioCriador) {
     usuarioCriador = parameters.idUsuarioGeral;
   }
   const objetoRegistro = await unirRequisicao(req);
-  const urls = req.route.path.split("/");
+  const urls = req.route.path.split('/');
   const nomeModelo = urls[1];
   const retorno = {
     modelo: nomeModelo,
@@ -55,7 +55,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro de criar usuário sistema.",
+        msg: res.__('SISTEMA').USUARIO.FALHA_REGISTRO,
         msgErro: e
       });
     }
@@ -67,7 +67,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro da autenticação do usuário.",
+        msg: res.__('SISTEMA').USUARIO.FALHA_ACESSOEMAIL,
         msgErro: e
       });
     }
@@ -79,7 +79,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro de atualizaçῶao de token.",
+        msg: res.__('SISTEMA').USUARIO.FALHA_ATUALIZAR_TOKEN,
         msgErro: e
       });
     }

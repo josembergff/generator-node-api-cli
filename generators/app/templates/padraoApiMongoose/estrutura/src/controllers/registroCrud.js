@@ -1,8 +1,8 @@
-const generic = require("../repositories/generic");
-const registroCrud = require("../repositories/registroCrud");
-const acoes = require("../enums/acoes");
-const modules = require("../config/modules");
-const autenticacao = require("../services/autenticacao");
+const generic = require('../repositories/generic');
+const registroCrud = require('../repositories/registroCrud');
+const acoes = require('../enums/acoes');
+const modules = require('../config/modules');
+const autenticacao = require('../services/autenticacao');
 
 const unirRequisicao = async req => {
   let retorno = {};
@@ -12,9 +12,9 @@ const unirRequisicao = async req => {
 };
 
 const prepararRequisicao = async req => {
-  let ipUsuario = "::1";
+  let ipUsuario = '::1';
 
-  const navegadorUsuario = modules.useragent.is(req.headers["user-agent"]);
+  const navegadorUsuario = modules.useragent.is(req.headers['user-agent']);
 
   if (
     req &&
@@ -22,11 +22,11 @@ const prepararRequisicao = async req => {
     req.connection.remoteAddress &&
     req.connection.remoteAddress.replace
   ) {
-    ipUsuario = req.connection.remoteAddress.replace("::ffff:", "");
+    ipUsuario = req.connection.remoteAddress.replace('::ffff:', '');
   }
   const usuarioCriador = await autenticacao.idUsuarioToken(req);
   const objetoRegistro = await unirRequisicao(req);
-  const urls = req.route.path.split("/");
+  const urls = req.route.path.split('/');
   const nomeModelo = urls[1];
   let nomeMongoose = letraMaiuscula(nomeModelo);
   nomeMongoose = nomeMongoose.substr(0, nomeMongoose.length - 1);
@@ -60,12 +60,12 @@ const criarRegistro = async (req, res, next, acao) => {
 };
 
 const letraMaiuscula = text => {
-  var words = text.toLowerCase().split(" ");
+  var words = text.toLowerCase().split(' ');
   for (var a = 0; a < words.length; a++) {
     var w = words[a];
     words[a] = w[0].toUpperCase() + w.slice(1);
   }
-  return words.join(" ");
+  return words.join(' ');
 };
 module.exports = {
   cadastrarCriacao: async (req, res, next) => {
@@ -74,7 +74,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registrar a criação.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO,
         msgErro: e
       });
     }
@@ -86,7 +86,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro de edição."
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_EDICAO
       });
     }
   },
@@ -97,7 +97,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro da exclusão.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_EXCLUSAO,
         msgErro: e
       });
     }
@@ -109,7 +109,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro da alteração de status.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_STATUS,
         msgErro: e
       });
     }
@@ -121,7 +121,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro de inicio.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_INICIAR,
         msgErro: e
       });
     }
@@ -133,7 +133,7 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro de pausa.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_PAUSAR,
         msgErro: e
       });
     }
@@ -145,19 +145,19 @@ module.exports = {
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro da finalização.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_FINALIZAR,
         msgErro: e
       });
     }
   },
 
-  cadastrarConcluir: async (req, res, next) => {
+  cadastrarArquivar: async (req, res, next) => {
     try {
-      await criarRegistro(req, res, next, acoes.concluir);
+      await criarRegistro(req, res, next, acoes.arquivar);
       next();
     } catch (e) {
       res.status(500).send({
-        msg: "Falha no registro da conclusão.",
+        msg: res.__('SISTEMA').CRUD.FALHA_REGISTRO_ARQUIVAR,
         msgErro: e
       });
     }

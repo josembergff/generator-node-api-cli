@@ -1,6 +1,6 @@
 const autenticacao = require('../services/autenticacao');
 const registroCrudCtrl = require('../controllers/registroCrud');
-const grupoCtrl = require('../controllers/grupo');
+const <%=nomeEntidade%>Ctrl = require('../controllers/<%=nomeEntidade%>');
 
 module.exports = app => {
   app
@@ -8,31 +8,31 @@ module.exports = app => {
     .post(
       autenticacao.autorizar,
       registroCrudCtrl.cadastrarCriacao,
-      grupoCtrl.cadastrar
+      <%=nomeEntidade%>Ctrl.cadastrar
     );
   app
     .route('/<%=nomeEntidade%>/:id')
     .put(
       autenticacao.autorizar,
       registroCrudCtrl.cadastrarEdicao,
-      grupoCtrl.editar
+      <%=nomeEntidade%>Ctrl.editar
     );
   app
     .route('/<%=nomeEntidade%>/:id')
     .delete(
       autenticacao.autorizar,
       registroCrudCtrl.cadastrarExclusao,
-      grupoCtrl.excluir
+      <%=nomeEntidade%>Ctrl.excluir
     );
 
-  app.route('/<%=nomeEntidade%>').get(autenticacao.autorizar, grupoCtrl.listar);
+  app.route('/<%=nomeEntidade%>').get(autenticacao.autorizar, <%=nomeEntidade%>Ctrl.listar);
   app
     .route('/<%=nomeEntidade%>/dados/combo')
-    .get(autenticacao.autorizar, grupoCtrl.combo);
+    .get(autenticacao.autorizar, <%=nomeEntidade%>Ctrl.combo);
   app
     .route('/<%=nomeEntidade%>/:id')
-    .get(autenticacao.autorizar, grupoCtrl.buscarId);
+    .get(autenticacao.autorizar, <%=nomeEntidade%>Ctrl.buscarId);
   app
     .route('/<%=nomeEntidade%>/dados/quantidade')
-    .get(autenticacao.autorizar, grupoCtrl.quantidadeLista);
+    .get(autenticacao.autorizar, <%=nomeEntidade%>Ctrl.quantidadeLista);
 };

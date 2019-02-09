@@ -1,5 +1,21 @@
 {
   "SISTEMA": {
-    "RODANDO": "API <%= nomeExternoProjeto %> Rodando"
+    "RODANDO": "API <%= nomeExternoProjeto %> Rodando.",
+    "USUARIO": {
+      "FALHA_REGISTRO": "Falha no registro do usuário sistema.",
+      "FALHA_ACESSOEMAIL": "Falha no registro da autenticação do usuário.",
+      "FALHA_ATUALIZAR_TOKEN": "Falha no registro de atualização de token.",
+      "EMAIL_EXISTENTE": "Email já cadastrado."
+    },
+    "CRUD": {
+      "FALHA_REGISTRO": "Falha no registrar a criação.",
+      "FALHA_REGISTRO_EDICAO": "Falha no registro de edição.",
+      "FALHA_REGISTRO_EXCLUSAO": "Falha no registro da exclusão.",
+      "FALHA_REGISTRO_STATUS": "Falha no registro da alteração de status.",
+      "FALHA_REGISTRO_INICIAR": "Falha no registro de inicio.",
+      "FALHA_REGISTRO_PAUSAR": "Falha no registro de pausa.",
+      "FALHA_REGISTRO_FINALIZAR": "Falha no registro da finalização.",
+      "FALHA_REGISTRO_ARQUIVAR": "Falha no registro do arquivamento."
+    }
   }
 }

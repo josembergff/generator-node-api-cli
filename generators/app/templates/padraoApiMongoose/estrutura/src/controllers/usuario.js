@@ -1,9 +1,9 @@
-const parameters = require("../config/parameters");
-const modules = require("../config/modules");
-const usuarioRepo = require("../repositories/usuario");
-const notificacaoEnum = require("../enums/notificacao");
-const notificacaoServ = require("../services/notificacao");
-const autenticacao = require("../services/autenticacao");
+const parameters = require('../config/parameters');
+const modules = require('../config/modules');
+const usuarioRepo = require('../repositories/usuario');
+const notificacaoEnum = require('../enums/notificacao');
+const notificacaoServ = require('../services/notificacao');
+const autenticacao = require('../services/autenticacao');
 
 module.exports = {
   cadastrar: async (req, res, next) => {
@@ -13,7 +13,7 @@ module.exports = {
       if (usuarioExistente) {
         res
           .status(400)
-          .send({ msg: "Email já cadastrado." })
+          .send({ msg: res.__('SISTEMA').USUARIO.EMAIL_EXISTENTE })
           .end();
         return;
       }
@@ -23,7 +23,7 @@ module.exports = {
       await usuarioRepo.padrao().criar(req.body);
 
       const mensagem =
-        "Olá, <strong>" +
+        'Olá, <strong>' +
         req.body.nome +
         `</strong>, seja bem vindo ao ${parameters.nomeProjeto}!`;
       usuarioExistente = await usuarioRepo.buscarEmail(req.body.email);
@@ -37,11 +37,11 @@ module.exports = {
         true
       );
       res.status(200).send({
-        msg: "Usuário cadastrado com sucesso!"
+        msg: 'Usuário cadastrado com sucesso!'
       });
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao processar o cadastro de usuário",
+        msg: 'Falha ao processar o cadastro de usuário',
         msgErro: e
       });
     }
@@ -55,7 +55,7 @@ module.exports = {
       );
       if (!usuario) {
         res.status(500).send({
-          msg: "Usuário e/ou senha inválidos"
+          msg: 'Usuário e/ou senha inválidos'
         });
         return;
       }
@@ -82,7 +82,7 @@ module.exports = {
       });
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao processar a autenticação",
+        msg: 'Falha ao processar a autenticação',
         msgErro: e
       });
     }
@@ -96,7 +96,7 @@ module.exports = {
 
       if (!usuario) {
         res.status(500).send({
-          msg: "Cliente não encontrado"
+          msg: 'Cliente não encontrado'
         });
         return;
       }
@@ -120,7 +120,7 @@ module.exports = {
       });
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao processar a renovação de token",
+        msg: 'Falha ao processar a renovação de token',
         msgErro: e
       });
     }
@@ -159,11 +159,11 @@ module.exports = {
       );
 
       res.status(200).send({
-        msg: "Recuperação de senha enviada por email."
+        msg: 'Recuperação de senha enviada por email.'
       });
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao processar a recuperação de login",
+        msg: 'Falha ao processar a recuperação de login',
         msgErro: e
       });
     }
@@ -181,7 +181,7 @@ module.exports = {
       usuarioExistente.edicao = new Date();
 
       await usuarioRepo.padrao().editar(usuarioExistente._id, usuarioExistente);
-      const mensagem = "A seu login foi atualizado com sucesso.";
+      const mensagem = 'A seu login foi atualizado com sucesso.';
 
       await notificacaoServ.nova(
         notificacaoEnum.AtualizacaoSenha,
@@ -194,11 +194,11 @@ module.exports = {
       );
 
       res.status(200).send({
-        msg: "Login atualizado."
+        msg: 'Login atualizado.'
       });
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao processar a atualização do login",
+        msg: 'Falha ao processar a atualização do login',
         msgErro: e
       });
     }
@@ -246,7 +246,7 @@ module.exports = {
             dispositivoNome.edicao = new Date();
           } else {
             usuarioAtual.dispositivos.push(req.body);
-            let ipUsuario = "::1";
+            let ipUsuario = '::1';
 
             if (
               req &&
@@ -254,10 +254,15 @@ module.exports = {
               req.connection.remoteAddress &&
               req.connection.remoteAddress.replace
             ) {
-              ipUsuario = req.connection.remoteAddress.replace("::ffff:", "");
+              ipUsuario = req.connection.remoteAddress.replace('::ffff:', '');
             }
-            const mensagem =
-              `Foi adicionado um novo dispositivo. Modelo: ${req.body.modelo}, Plataforma: ${req.body.plataforma}, IP: ${ipUsuario}. <br><br>Se foi você que acessou nada a ser feito, caso não tenha sido uma ação sua, por favor entre em contato conosco: contact@${parameters.nomeProjeto}.com.`;
+            const mensagem = `Foi adicionado um novo dispositivo. Modelo: ${
+              req.body.modelo
+            }, Plataforma: ${
+              req.body.plataforma
+            }, IP: ${ipUsuario}. <br><br>Se foi você que acessou nada a ser feito, caso não tenha sido uma ação sua, por favor entre em contato conosco: contact@${
+              parameters.nomeProjeto
+            }.com.`;
             await notificacaoServ.nova(
               notificacaoEnum.NovoDispositivo,
               `Novo dispositivo adicionado no ${parameters.nomeProjeto}`,
@@ -275,12 +280,12 @@ module.exports = {
         });
       }
       res.status(200).send({
-        msg: "Login atualizado com dados do dispositivo."
+        msg: 'Login atualizado com dados do dispositivo.'
       });
     } catch (e) {
       res.status(500).send({
         msg:
-          "Falha ao processar a atualização do login com os dados do dispositivo.",
+          'Falha ao processar a atualização do login com os dados do dispositivo.',
         msgErro: e
       });
     }
@@ -293,7 +298,7 @@ module.exports = {
       res.status(200).send(lista);
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao buscar usuários por nome.",
+        msg: 'Falha ao buscar usuários por nome.',
         msgErro: e
       });
     }
@@ -307,7 +312,7 @@ module.exports = {
       res.status(200).send(lista);
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao buscar usuários online.",
+        msg: 'Falha ao buscar usuários online.',
         msgErro: e
       });
     }
@@ -321,7 +326,7 @@ module.exports = {
       res.status(200).send(lista);
     } catch (e) {
       res.status(500).send({
-        msg: "Falha ao buscar todos os usuários.",
+        msg: 'Falha ao buscar todos os usuários.',
         msgErro: e
       });
     }
