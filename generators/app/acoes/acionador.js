@@ -1,7 +1,7 @@
 'use strict';
 const rename = require('gulp-rename');
 let destino = '';
-destino = './../generators/teste';
+//destino = './../generators/teste';
 
 exports.renomearEntidade = (atual, data) => {
   atual.registerTransformStream(
