@@ -1,5 +1,51 @@
 {
   "SISTEMA": {
-    "RODANDO": "API <%= nomeExternoProjeto %> Running"
+    "RODANDO": "API <%= nomeExternoProjeto %> Running",
+    "USUARIO": {
+      "FALHA_REGISTRO": "Falha no registro do usuário sistema.",
+      "FALHA_ACESSOEMAIL": "Falha no registro da autenticação do usuário.",
+      "FALHA_ATUALIZAR_TOKEN": "Falha no registro de atualização de token.",
+      "EMAIL_EXISTENTE": "Email já cadastrado.",
+      "USUARIO_INVALIDO": "Usuário e/ou senha inválidos",
+      "FALHA_AUTENTICAR": "Falha ao processar a autenticação",
+      "USUARIO_NAO_ENCONTRADO": "Usuário não encontrado",
+      "FALHA_RENOVACAO_TOKEN": "Falha ao processar a renovação de token",
+      "RECUPERACAO_SENHA_ENVIADA": "Recuperação de senha enviada por email.",
+      "FALHA_RECUPERACAO_SENHA": "Falha ao processar a recuperação de login.",
+      "LOGIN_DISPOSITIVO_ATUALIZADO": "Login atualizado com dados do dispositivo.",
+      "FALHA_LOGIN_DISPOSITIVO_ATUALIZADO": "Falha ao processar a atualização do login com os dados do dispositivo.",
+      "FALHA_USUARIO_NOME": "Falha ao buscar usuários por nome.",
+      "FALHA_USUARIOS_ONLINE": "Falha ao buscar usuários online.",
+      "FALHA_LISTA_USUARIOS": "Falha ao buscar todos os usuários."
+    },
+    "EMAIL": {
+      "BEM_VINDO": "Olá, <strong>{{nome}}</strong>, seja bem vindo ao {{nomeProjeto}}!",
+      "BEM_VINDO_PROJETO": "Bem vindo ao {{nomeProjeto}}.",
+      "LOGIN_ATUALIZADO": "A seu login foi atualizado com sucesso.",
+      "SENHA_TEMPORARIA": "Para seu login ser recuperado acesse o sistema com a senha temporária {{    temporaria}} para definir uma nova senha.",
+      "RECUPERAR_LOGIN_PROJETO": "Recuperar login do {{nomeProjeto}}.",
+      "DISPOSITIVO_ADICIONADO": "Foi adicionado um novo dispositivo. Modelo: {{modelo}}, Plataforma: {{plataforma}}, IP: {{ipUsuario}}. <br><br>Se foi você que acessou nada a ser feito, caso não tenha sido uma ação sua, por favor entre em contato conosco: contact@{{nomeProjeto}}.com .",
+      "NOVO_DISPOSITIVO_ADICIONADO": "Novo dispositivo adicionado no {{nomeProjeto}}"
+    },
+    "CRUD": {
+      "FALHA_REGISTRO": "Falha no registrar a criação.",
+      "FALHA_REGISTRO_EDICAO": "Falha no registro de edição.",
+      "FALHA_REGISTRO_EXCLUSAO": "Falha no registro da exclusão.",
+      "FALHA_REGISTRO_STATUS": "Falha no registro da alteração de status.",
+      "FALHA_REGISTRO_INICIAR": "Falha no registro de inicio.",
+      "FALHA_REGISTRO_PAUSAR": "Falha no registro de pausa.",
+      "FALHA_REGISTRO_FINALIZAR": "Falha no registro da finalização.",
+      "FALHA_REGISTRO_ARQUIVAR": "Falha no registro do arquivamento.",
+      "CADASTRO_SUCESSO": "{{entidade}} cadastrada com sucesso!",
+      "CADASTRO_FALHA": "Falha ao cadastrar {{entidade}}.",
+      "EDICAO_SUCESSO": "{{entidade}} editada com sucesso!",
+      "EDICAO_FALHA": "Falha ao editar {{entidade}}.",
+      "EXCLUSAO_SUCESSO": "{{entidade}} excluída com sucesso!",
+      "EXCLUSAO_FALHA": "Falha ao excluír {{entidade}}.",
+      "LISTAGEM_FALHA": "Falha na listagem de {{entidadePlural}}.",
+      "LISTAGEM_COMBO_FALHA": "Falha ao listagem {{entidadePlural}} para combo.",
+      "BUSCAR_ID_FALHA": "Falha ao buscar {{entidade}} por ID.",
+      "QUANTIDADE_LISTAGEM_FALHA": "Falha ao contar a listagem de {{entidadePlural}}."
+    }
   }
 }
