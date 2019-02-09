@@ -46,6 +46,9 @@
       "LISTAGEM_COMBO_FALHA": "Falha ao listagem {{entidadePlural}} para combo.",
       "BUSCAR_ID_FALHA": "Falha ao buscar {{entidade}} por ID.",
       "QUANTIDADE_LISTAGEM_FALHA": "Falha ao contar a listagem de {{entidadePlural}}."
+    },
+    "VALIDACOES": {
+      "NOME_MINIMO_OBRIGATORIO": "O nome de {{entidade}} é necessário ter mais que 3 caracteres."
     }
   }
 }

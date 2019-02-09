@@ -1,5 +1,6 @@
 const autenticacao = require('../services/autenticacao');
 const registroCrudCtrl = require('../controllers/registroCrud');
+const modules = require('../config/modules');
 const <%=nomeEntidade%>Ctrl = require('../controllers/<%=nomeEntidade%>');
 const i18n = require('i18n');
 
@@ -8,6 +9,22 @@ module.exports = app => {
     .route('/<%=nomeEntidade%>')
     .post(
       autenticacao.autorizar,
+        [
+            modules.validation
+                .check(
+                    'nome',
+                    i18n.__('SISTEMA.VALIDACOES.NOME_MINIMO_OBRIGATORIO', {
+                        entidade: '<%=nomeExternoEntidade%>'
+                    })
+                )
+                .not()
+                .isEmpty()
+                .trim()
+                .escape()
+                .isLength({
+                    min: 3
+                })
+        ],
       registroCrudCtrl.cadastrarCriacao,
       <%=nomeEntidade%>Ctrl.cadastrar
     );
