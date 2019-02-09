@@ -4,54 +4,54 @@ const usuarioCtrl = require('../controllers/usuario');
 
 module.exports = app => {
   app
-    .route('/usuarios')
+    .route('/usuario')
     .post(
       autenticacao.linguagem,
       registroAcessoCtrl.cadastrarRegistro,
       usuarioCtrl.cadastrar
     );
   app
-    .route('/usuarios/autenticar')
+    .route('/usuario/autenticar')
     .post(
       autenticacao.linguagem,
       registroAcessoCtrl.cadastrarAcessoEmail,
       usuarioCtrl.autenticar
     );
   app
-    .route('/usuarios/atualizar')
+    .route('/usuario/atualizar')
     .post(
       autenticacao.autorizar,
       registroAcessoCtrl.cadastrarAtualizar,
       usuarioCtrl.atualizarToken
     );
   app
-    .route('/usuarios/recuperar')
+    .route('/usuario/recuperar')
     .put(
       autenticacao.linguagem,
       registroAcessoCtrl.cadastrarAtualizar,
       usuarioCtrl.recuperar
     );
   app
-    .route('/usuarios/login/atualizar')
+    .route('/usuario/login/atualizar')
     .put(
       autenticacao.autorizar,
       registroAcessoCtrl.cadastrarAtualizar,
       usuarioCtrl.atualizarSenha
     );
   app
-    .route('/usuarios/login/atualizarDispositivo')
+    .route('/usuario/login/atualizarDispositivo')
     .put(
       autenticacao.autorizar,
       registroAcessoCtrl.cadastrarAtualizar,
       usuarioCtrl.atualizarDispositivo
     );
   app
-    .route('/usuarios/busca/:nome')
+    .route('/usuario/busca/:nome')
     .get(autenticacao.autorizar, usuarioCtrl.buscarPorNome);
   app
-    .route('/usuarios/dados/usuariosOnline')
+    .route('/usuario/dados/usuariosOnline')
     .get(autenticacao.autorizar, usuarioCtrl.usuariosOnline);
   app
-    .route('/usuarios/dados/usuarios')
+    .route('/usuario/dados/usuarios')
     .get(autenticacao.autorizar, usuarioCtrl.todosUsuarios);
 };

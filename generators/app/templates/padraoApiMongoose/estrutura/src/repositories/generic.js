@@ -1,4 +1,4 @@
-const modules = require("../config/modules");
+const modules = require('../config/modules');
 let Modelo;
 let nomeModelo;
 
@@ -43,6 +43,15 @@ module.exports = {
       // limit: 10,  Ending Row
       sort: {
         nome: 1 //Sort by Date Added DESC
+      }
+    });
+    return lista;
+  },
+
+  listagemCombo: async idUsuario => {
+    const lista = await Modelo.find({ criador: idUsuario }, 'nome', {
+      sort: {
+        nome: 1
       }
     });
     return lista;
