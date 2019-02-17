@@ -1,6 +1,6 @@
 const baseLocal = '<%=chaveMongo%>';
 const baseTeste = 'mongodb://api:api@localhost:27017/nomebaseteste';
-const modules = require('./modules');
+const i18n = require('i18n');
 
 module.exports = {
   chavePrivada: 'deea259b-f46c-41ad-b274-c5cadc49ff72-api<%= nomeProjeto %>',
@@ -31,7 +31,7 @@ module.exports = {
   cron: process.env.CRON_ATIVO == 'true',
   socket: process.env.SOCKET_ATIVO == 'true',
   chaveAnalytics: `${process.env.GOOGLEANALYTICS_CHAVE}`,
-  rodapeMensagem: modules.i18n.__('SISTEMA.PARAMETROS.RODAPE_EMAIL', {
+  rodapeMensagem: i18n.__('SISTEMA.PARAMETROS.RODAPE_EMAIL', {
     nomeProjeto: '<%=nomeProjeto%>',
     email: process.env.SMTP_EMAIL_USUARIO
   })
