@@ -4,12 +4,7 @@ const dispositivo = require('../schemas/dispositivo');
 const schema = new modules.mongoose.Schema({
   nome: {
     type: String,
-    required: [
-      true,
-      modules.i18n.__('MODELO.PADRAO.NOME_OBRIGATORIO', {
-        entidade: 'Usuário'
-      })
-    ],
+    required: true,
     trim: true
   },
   sobrenome: {
@@ -19,21 +14,19 @@ const schema = new modules.mongoose.Schema({
   },
   senha: {
     type: String,
-    required: [
-      true,
-      modules.i18n.__('MODELO.PADRAO.SENHA_OBRIGATORIO', {
-        entidade: 'Usuário'
-      })
-    ],
+    required: true,
     trim: true
   },
   email: {
     type: String,
     required: [
       true,
-      modules.i18n.__('MODELO.PADRAO.EMAIL_OBRIGATORIO', {
-        entidade: 'Usuário'
-      })
+      modules.i18n.__(
+        { phrase: modules.i18n.__('MODELO').PADRAO.EMAIL_OBRIGATORIO },
+        {
+          entidade: 'Usuário'
+        }
+      )
     ],
     trim: true,
     unique: true

@@ -4,12 +4,7 @@ const acoes = require('../enums/acoes');
 const schema = new modules.mongoose.Schema({
   modelo: {
     type: String,
-    required: [
-      true,
-      modules.i18n.__('MODELO.PADRAO.NOME_OBRIGATORIO', {
-        entidade: 'Modelo'
-      })
-    ],
+    required: true,
     trim: true
   },
   navegador: {
@@ -24,7 +19,7 @@ const schema = new modules.mongoose.Schema({
   },
   acao: {
     type: String,
-    required: [true, modules.i18n.__('MODELO').ENUM.ACAO],
+    required: true,
     enum: modules.lodash.values(acoes),
     trim: true
   },
@@ -35,7 +30,7 @@ const schema = new modules.mongoose.Schema({
   },
   registro: {
     type: modules.mongoose.Schema.Types.Mixed,
-    required: [true, modules.i18n.__('MODELO').PADRAO.OBJETO_REGISTRO]
+    required: true
   },
   registroAtual: {
     type: modules.mongoose.Schema.Types.Mixed,

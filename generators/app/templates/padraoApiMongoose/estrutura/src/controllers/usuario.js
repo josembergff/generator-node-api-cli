@@ -22,14 +22,14 @@ module.exports = {
 
       await usuarioRepo.padrao().criar(req.body);
 
-      const mensagem = res.__('SISTEMA.EMAIL.BEM_VINDO', {
+      const mensagem = res.__(res.__('SISTEMA').EMAIL.BEM_VINDO, {
         nome: req.body.nome,
         nomeProjeto: parameters.nomeProjeto
       });
       usuarioExistente = await usuarioRepo.buscarEmail(req.body.email);
       await notificacaoServ.nova(
         notificacaoEnum.BoasVindas,
-        res.__('SISTEMA.EMAIL.BEM_VINDO_PROJETO', {
+        res.__(res.__('SISTEMA').EMAIL.BEM_VINDO_PROJETO, {
           nomeProjeto: parameters.nomeProjeto
         }),
         mensagem,
@@ -39,11 +39,15 @@ module.exports = {
         true
       );
       res.status(200).send({
-        msg: res.__('SISTEMA.CRUD.CADASTRO_SUCESSO', { entidade: 'Usuário' })
+        msg: res.__(res.__('SISTEMA').CRUD.CADASTRO_SUCESSO, {
+          entidade: 'Usuário'
+        })
       });
     } catch (e) {
       res.status(500).send({
-        msg: res.__('SISTEMA.CRUD.CADASTRO_FALHA', { entidade: 'Usuário' }),
+        msg: res.__(res.__('SISTEMA').CRUD.CADASTRO_FALHA, {
+          entidade: 'Usuário'
+        }),
         msgErro: e
       });
     }
@@ -145,13 +149,13 @@ module.exports = {
       usuarioExistente.edicao = new Date();
 
       await usuarioRepo.padrao().editar(usuarioExistente._id, usuarioExistente);
-      const mensagem = res.__('SISTEMA.EMAIL.SENHA_TEMPORARIA', {
+      const mensagem = res.__(res.__('SISTEMA').EMAIL.SENHA_TEMPORARIA, {
         temporaria: temporaria
       });
 
       await notificacaoServ.nova(
         notificacaoEnum.ReseteSenha,
-        res.__('SISTEMA.EMAIL.RECUPERAR_LOGIN_PROJETO', {
+        res.__(res.__('SISTEMA').EMAIL.RECUPERAR_LOGIN_PROJETO, {
           nomeProjeto: parameters.nomeProjeto
         }),
         mensagem,
@@ -188,7 +192,7 @@ module.exports = {
 
       await notificacaoServ.nova(
         notificacaoEnum.AtualizacaoSenha,
-        res.__('SISTEMA.EMAIL.RECUPERAR_LOGIN_PROJETO', {
+        res.__(res.__('SISTEMA').EMAIL.RECUPERAR_LOGIN_PROJETO, {
           nomeProjeto: parameters.nomeProjeto
         }),
         mensagem,
@@ -199,13 +203,13 @@ module.exports = {
       );
 
       res.status(200).send({
-        msg: res.__('SISTEMA.CRUD.EDICAO_SUCESSO', {
+        msg: res.__(res.__('SISTEMA').CRUD.EDICAO_SUCESSO, {
           entidade: 'Login'
         })
       });
     } catch (e) {
       res.status(500).send({
-        msg: res.__('SISTEMA.CRUD.EDICAO_FALHA', {
+        msg: res.__(res.__('SISTEMA').CRUD.EDICAO_FALHA, {
           entidade: 'Login'
         }),
         msgErro: e
@@ -265,15 +269,18 @@ module.exports = {
             ) {
               ipUsuario = req.connection.remoteAddress.replace('::ffff:', '');
             }
-            const mensagem = res.__('SISTEMA.EMAIL.DISPOSITIVO_ADICIONADO', {
-              modelo: req.body.modelo,
-              plataforma: req.body.plataforma,
-              ipUsuario: ipUsuario,
-              nomeProjeto: parameters.nomeProjeto
-            });
+            const mensagem = res.__(
+              res.__('SISTEMA').EMAIL.DISPOSITIVO_ADICIONADO,
+              {
+                modelo: req.body.modelo,
+                plataforma: req.body.plataforma,
+                ipUsuario: ipUsuario,
+                nomeProjeto: parameters.nomeProjeto
+              }
+            );
             await notificacaoServ.nova(
               notificacaoEnum.NovoDispositivo,
-              res.__('SISTEMA.EMAIL.NOVO_DISPOSITIVO_ADICIONADO', {
+              res.__(res.__('SISTEMA').EMAIL.NOVO_DISPOSITIVO_ADICIONADO, {
                 nomeProjeto: parameters.nomeProjeto
               }),
               mensagem,
