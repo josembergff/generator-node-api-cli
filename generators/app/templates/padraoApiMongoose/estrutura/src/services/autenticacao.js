@@ -3,7 +3,8 @@ const parameters = require('../config/parameters');
 const i18n = require('i18n');
 
 const resgatarUsuarioTokenReq = async req => {
-  const token = req.body.ofacessotoken || req.headers[parameters.chaveReq];
+  const chaveToken = parameters.chaveReq.toLowerCase();
+  const token = req.body[chaveToken] || req.headers[chaveToken];
   return await resgatarUsuarioToken(token);
 };
 
@@ -100,7 +101,8 @@ module.exports = {
   },
 
   administrador: (req, res, next) => {
-    var token = req.body.oftoken || req.headers[parameters.chaveReq];
+    const chaveToken = parameters.chaveReq.toLowerCase();
+    const token = req.body[chaveToken] || req.headers[chaveToken];
 
     if (!token) {
       res.status(401).send({
