@@ -1,10 +1,15 @@
-const modules = require("../config/modules");
-const acoes = require("../enums/acoes");
+const modules = require('../config/modules');
+const acoes = require('../enums/acoes');
 
 const schema = new modules.mongoose.Schema({
   modelo: {
     type: String,
-    required: [true, "O nome do Modelo é obrigatório"],
+    required: [
+      true,
+      modules.i18n.__('MODELO.PADRAO.NOME_OBRIGATORIO', {
+        entidade: 'Modelo'
+      })
+    ],
     trim: true
   },
   navegador: {
@@ -19,7 +24,7 @@ const schema = new modules.mongoose.Schema({
   },
   acao: {
     type: String,
-    required: [true, "Obrigatório a ação do registro."],
+    required: [true, modules.i18n.__('MODELO').ENUM.ACAO],
     enum: modules.lodash.values(acoes),
     trim: true
   },
@@ -30,7 +35,7 @@ const schema = new modules.mongoose.Schema({
   },
   registro: {
     type: modules.mongoose.Schema.Types.Mixed,
-    required: [true, "Obrigatório o objeto do registro."]
+    required: [true, modules.i18n.__('MODELO').PADRAO.OBJETO_REGISTRO]
   },
   registroAtual: {
     type: modules.mongoose.Schema.Types.Mixed,
@@ -38,9 +43,9 @@ const schema = new modules.mongoose.Schema({
   },
   criador: {
     type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Usuario",
+    ref: 'Usuario',
     required: true
   }
 });
 
-module.exports = modules.mongoose.model("RegistroCrud", schema);
+module.exports = modules.mongoose.model('RegistroCrud', schema);

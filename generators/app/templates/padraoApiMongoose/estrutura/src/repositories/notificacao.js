@@ -1,13 +1,13 @@
-const generic = require("./generic");
-const modules = require("../config/modules");
+const generic = require('./generic');
+const modules = require('../config/modules');
 
 const padrao = () => {
-  generic.modelo("notificacao");
+  generic.modelo('Notificacao');
   return generic;
 };
 
 const modelo = () => {
-  return generic.modelo("notificacao");
+  return generic.modelo('Notificacao');
 };
 
 module.exports = {
@@ -26,23 +26,23 @@ module.exports = {
           { dataEnvio: { $lte: new Date() } }
         ]
       })
-      .populate("criador")
-      .populate("editor");
+      .populate('criador')
+      .populate('editor');
     return lista;
   },
 
   buscarPorId: async id => {
     const objeto = await modelo()
       .findById(id)
-      .populate("criador")
-      .populate("editor");
+      .populate('criador')
+      .populate('editor');
     return objeto;
   },
 
   buscarQuantidadeDia: async (nome, idUsuario) => {
     const objeto = await padrao().quantidade({
       nome: nome,
-      dataEnviado: { $lte: modules.moment().startOf("day") },
+      dataEnviado: { $lte: modules.moment().startOf('day') },
       criador: idUsuario
     });
     return objeto;

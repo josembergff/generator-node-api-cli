@@ -1,15 +1,20 @@
-const modules = require("../config/modules");
-const acesso = require("../enums/acesso");
+const modules = require('../config/modules');
+const acesso = require('../enums/acesso');
 
 const schema = new modules.mongoose.Schema({
   modelo: {
     type: String,
-    required: [true, "O nome do Modelo é obrigatório"],
+    required: [
+      true,
+      modules.i18n.__('MODELO.PADRAO.NOME_OBRIGATORIO', {
+        entidade: 'Modelo'
+      })
+    ],
     trim: true
   },
   acao: {
     type: String,
-    required: [true, "Obrigatório o tipo de acesso."],
+    required: [true, modules.i18n.__('MODELO').ENUM.ACESSO],
     enum: modules.lodash.values(acesso),
     trim: true
   },
@@ -30,13 +35,13 @@ const schema = new modules.mongoose.Schema({
   },
   registro: {
     type: modules.mongoose.Schema.Types.Mixed,
-    required: [true, "Obrigatório o objeto do registro."]
+    required: [true, modules.i18n.__('MODELO').PADRAO.OBJETO_REGISTRO]
   },
   criador: {
     type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Usuario",
+    ref: 'Usuario',
     required: true
   }
 });
 
-module.exports = modules.mongoose.model("RegistroAcesso", schema);
+module.exports = modules.mongoose.model('RegistroAcesso', schema);

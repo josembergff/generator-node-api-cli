@@ -1,5 +1,5 @@
-const modules = require("../config/modules");
-const notificacao = require("../enums/notificacao");
+const modules = require('../config/modules');
+const notificacao = require('../enums/notificacao');
 
 const schema = new modules.mongoose.Schema({
   nome: {
@@ -56,13 +56,13 @@ const schema = new modules.mongoose.Schema({
   },
   criador: {
     type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Usuario",
+    ref: 'Usuario',
     required: false
   },
   editor: {
     type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Usuario"
+    ref: 'Usuario'
   }
 });
 
-module.exports = modules.mongoose.model("notificacao", schema);
+module.exports = modules.mongoose.model('Notificacao', schema);

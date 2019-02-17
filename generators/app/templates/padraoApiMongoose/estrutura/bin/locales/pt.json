@@ -93,5 +93,17 @@
       "NOVA_MENSAGEM": "Nova mensagem",
       "NOTIFICACAO": "Notificação"
     }
+  },
+  "MODELO": {
+    "PADRAO": {
+      "NOME_OBRIGATORIO": "O nome do {{entidade}} é obrigatório.",
+      "SENHA_OBRIGATORIO": "A senha do {{entidade}} é obrigatório.",
+      "EMAIL_OBRIGATORIO": "O email do {{entidade}} é obrigatório.",
+      "OBJETO_REGISTRO": "Obrigatório o objeto do registro."
+    },
+    "ENUM": {
+      "ACESSO": "Obrigatório o tipo de acesso.",
+      "ACAO": "Obrigatório o tipo de ação."
+    }
   }
 }

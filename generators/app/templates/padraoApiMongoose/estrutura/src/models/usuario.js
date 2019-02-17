@@ -1,10 +1,15 @@
-const modules = require("../config/modules");
-const dispositivo = require("../schemas/dispositivo");
+const modules = require('../config/modules');
+const dispositivo = require('../schemas/dispositivo');
 
 const schema = new modules.mongoose.Schema({
   nome: {
     type: String,
-    required: [true, "O nome do Usuário é obrigatório"],
+    required: [
+      true,
+      modules.i18n.__('MODELO.PADRAO.NOME_OBRIGATORIO', {
+        entidade: 'Usuário'
+      })
+    ],
     trim: true
   },
   sobrenome: {
@@ -14,12 +19,22 @@ const schema = new modules.mongoose.Schema({
   },
   senha: {
     type: String,
-    required: [true, "A senha do Usuário é obrigatório"],
+    required: [
+      true,
+      modules.i18n.__('MODELO.PADRAO.SENHA_OBRIGATORIO', {
+        entidade: 'Usuário'
+      })
+    ],
     trim: true
   },
   email: {
     type: String,
-    required: [true, "O email do Usuário é obrigatório"],
+    required: [
+      true,
+      modules.i18n.__('MODELO.PADRAO.EMAIL_OBRIGATORIO', {
+        entidade: 'Usuário'
+      })
+    ],
     trim: true,
     unique: true
   },
@@ -55,12 +70,12 @@ const schema = new modules.mongoose.Schema({
   },
   criador: {
     type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Usuario"
+    ref: 'Usuario'
   },
   editor: {
     type: modules.mongoose.Schema.Types.ObjectId,
-    ref: "Usuario"
+    ref: 'Usuario'
   }
 });
 
-module.exports = modules.mongoose.model("Usuario", schema);
+module.exports = modules.mongoose.model('Usuario', schema);

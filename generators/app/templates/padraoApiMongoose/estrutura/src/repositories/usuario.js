@@ -51,10 +51,7 @@ module.exports = {
   buscarOnline: async idUsuario => {
     const objeto = await modelo().find(
       {
-        $and: [
-          { _id: { $ne: idUsuario } },
-          { online: true }
-        ]
+        $and: [{ _id: { $ne: idUsuario } }, { online: true }]
       },
       ['nome', 'sobrenome'],
       {
@@ -109,13 +106,9 @@ module.exports = {
     return objeto;
   },
 
-  usuariosOffline: async (idUsuario) => {
-    
+  usuariosOffline: async idUsuario => {
     const objeto = await modelo().find({
-      $and: [
-        { _id: { $ne: idUsuario } },
-        { online: { $ne: true } }
-      ]
+      $and: [{ _id: { $ne: idUsuario } }, { online: { $ne: true } }]
     });
     return objeto;
   },
