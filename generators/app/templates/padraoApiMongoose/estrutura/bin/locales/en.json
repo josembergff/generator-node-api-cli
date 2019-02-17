@@ -49,6 +49,72 @@
     },
     "VALIDACOES": {
       "NOME_MINIMO_OBRIGATORIO": "The {{entidade}} name must be longer than 3 characters."
+    },
+    "PARAMETROS": {
+      "ID_GERAL": "YOUR USER ID CREATOR GENERAL",
+      "RODAPE_EMAIL": "<br><br>Sign in {{nomeProjeto}} web or the Android / IOS app. <br> <br> Doubts? please contact us at {{email}}."
+    }
+  },
+  "ENUM": {
+    "ACESSO": {
+      "DESCONECTAR": "Disconnect",
+      "REGISTRO": "Record",
+      "RESETAR": "Reset",
+      "ATUALIZAR": "Update"
+    },
+    "ACOES": {
+      "CRIACAO": "Creation",
+      "EDICAO": "Edition",
+      "EXCLUSAO": "Exclusion",
+      "ALTERACAO_STATUS": "Status change",
+      "INICIAR": "Start",
+      "PAUSAR": "Pause",
+      "FINALIZAR": "Finish",
+      "ARQUIVAR": "To file"
+    },
+    "NOTIFICACAO": {
+      "BOAS_VINDAS": "Welcome",
+      "ATUALIZACAO_SENHA": "Password Update",
+      "ATUALIZACAO_USUARIO": "User Update",
+      "RESETE_SENHA": "Reset Password",
+      "CADASTRO": "New registration",
+      "EXCLUSAO": "Exclusion",
+      "FINALIZACAO": "Finishing",
+      "ALTERACAO_STATUS": "Status change",
+      "EDICAO": "Change",
+      "NOVO_DISPOSITIVO": "New device",
+      "FREQUENCIA": "Repeat frequency",
+      "ATRASOS": "Delays"
+    },
+    "SOCKET": {
+      "CONECTADO": "Connected",
+      "DESCONECTADO": "Disconnected",
+      "NOVA_MENSAGEM_ATUAL": "New Current Message",
+      "NOVA_MENSAGEM": "New message",
+      "NOTIFICACAO": "Notification"
+    }
+  },
+  "MODELO": {
+    "PADRAO": {
+      "NOME_OBRIGATORIO": "The {{entidade}} name is required.",
+      "SENHA_OBRIGATORIO": "The {{entidade}} password is required.",
+      "EMAIL_OBRIGATORIO": "The {{entidade}} email is required.",
+      "OBJETO_REGISTRO": "The record object is required."
+    },
+    "ENUM": {
+      "ACESSO": "Required type of access.",
+      "ACAO": "Required type of action."
+    }
+  },
+  "SERVICO": {
+    "AUTENTICACAO": {
+      "TOKEN_INVALIDO": "Invalid Token.",
+      "FALHA_TOKEN": "Failed to retrieve the token.",
+      "SOMENTE_ADM": "This access is restricted to administrators only."
+    },
+    "NOTIFICACAO": {
+      "EMAIL_INVALIDO": "Invalid email: {{email}}.",
+      "ERRO_ENVIO": "Notification submission line failed. Error: {{erro}}, Title: {{titulo}}, Email: {{email}}, Mobile: {{mobile}}, Online: {{online}}, Emails: {{emails}}, Line: {{linha}}, Send Email: {{enviarEmail}}, Push Push: {{enviarPush}}, Submit Socket: {{enviarSocker}}"
     }
   }
 }

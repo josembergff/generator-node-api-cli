@@ -1,6 +1,6 @@
 {
   "SISTEMA": {
-    "RODANDO": "API <%= nomeExternoProjeto %> Rodando.",
+    "RODANDO": "API <%= nomeExternoProjeto %> rodando.",
     "USUARIO": {
       "FALHA_REGISTRO": "Falha no registro do usuário sistema.",
       "FALHA_ACESSOEMAIL": "Falha no registro da autenticação do usuário.",
@@ -51,7 +51,7 @@
       "NOME_MINIMO_OBRIGATORIO": "O nome de {{entidade}} é necessário ter mais que 3 caracteres."
     },
     "PARAMETROS": {
-      "ID_GERAL": "SEU ID DE USUÁRIOS GERAL",
+      "ID_GERAL": "SEU ID DE USUÁRIO CRIADOR GERAL",
       "RODAPE_EMAIL": "<br><br>Acesse {{nomeProjeto}} web ou o aplicativo para Android / IOS. <br><br>Dúvidas? entre em contato conosco em {{email}}."
     }
   },
