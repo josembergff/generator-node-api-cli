@@ -1,5 +1,5 @@
-const modules = require("../config/modules");
-const parameters = require("../config/parameters");
+const modules = require('../config/modules');
+const parameters = require('../config/parameters');
 
 module.exports = app => {
   return {
@@ -19,9 +19,9 @@ module.exports = app => {
         if (error) {
           return console.error(error);
         }
-        console.info("Message sent: %s", info.messageId);
+        console.info('Message sent: %s', info.messageId);
         console.info(
-          "Preview URL: %s",
+          'Preview URL: %s',
           modules.nodemailer.getTestMessageUrl(info)
         );
       });

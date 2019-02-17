@@ -14,7 +14,7 @@ module.exports = {
   emailSeguro: false,
   emailFalha: process.env.EMAIL_FALHAS,
   emailProvisorio: process.env.EMAIL_PROVISORIO,
-  idUsuarioGeral: modules.i18n.__('SISTEMA').PARAMETROS.ID_GERAL,
+  idUsuarioGeral: process.env.ID_GERAL,
   conexaoMongoTest: baseTeste,
   conexaoMongoDev: baseLocal,
   conexaoMongoProducao: `mongodb://${process.env.MONGO_LOGIN_USUARIO}:${
