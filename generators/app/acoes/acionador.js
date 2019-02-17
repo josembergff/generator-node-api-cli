@@ -23,8 +23,7 @@ exports.novoProjetoApiNodeMongoose = (atual, data) => {
       nomeProjeto: data.nomeProjeto,
       nomeExternoProjeto: data.nomeExternoProjeto,
       descricaoProjeto: data.descricaoProjeto,
-      chaveMongo: data.chaveMongo,
-      chaveSendgrid: data.chaveSendgrid
+      chaveMongo: data.chaveMongo
     }
   );
   atual.log(
