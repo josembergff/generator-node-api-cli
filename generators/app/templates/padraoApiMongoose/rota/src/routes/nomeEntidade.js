@@ -2,7 +2,6 @@ const autenticacao = require('../services/autenticacao');
 const registroCrudCtrl = require('../controllers/registroCrud');
 const modules = require('../config/modules');
 const <%=nomeEntidade%>Ctrl = require('../controllers/<%=nomeEntidade%>');
-const i18n = require('i18n');
 
 module.exports = app => {
   app
@@ -13,7 +12,7 @@ module.exports = app => {
             modules.validation
                 .check(
                     'nome',
-                    i18n.__('SISTEMA.VALIDACOES.NOME_MINIMO_OBRIGATORIO', {
+                    modules.i18n.__('SISTEMA.VALIDACOES.NOME_MINIMO_OBRIGATORIO', {
                         entidade: '<%=nomeExternoEntidade%>'
                     })
                 )

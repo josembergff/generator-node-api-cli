@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const i18n = require('i18n');
 let app = express();
 const http = require('http');
-const loader = require('./autoLoader');
 
 if (process.env.NODE_ENV != 'prod') {
   const resultEnv = require('dotenv').load();
   console.info('ENV', resultEnv.parsed);
 }
+
+const loader = require('./autoLoader');
 
 process.env.TZ = 'America/Sao_Paulo';
 

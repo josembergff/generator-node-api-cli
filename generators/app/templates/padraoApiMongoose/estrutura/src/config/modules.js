@@ -1,18 +1,19 @@
-const lodash = require("lodash");
-const cron = require("node-cron");
-const jwt = require("jsonwebtoken");
-const moment = require("moment");
-const momenttz = require("moment-timezone");
-const https = require("https");
-const { check, validationResult } = require("express-validator/check");
-const useragent = require("useragent");
-const md5 = require("md5");
-const generator = require("generate-password");
-const nodemailer = require("nodemailer");
-const mongoose = require("mongoose");
-const parameters = require("./parameters");
+const lodash = require('lodash');
+const cron = require('node-cron');
+const jwt = require('jsonwebtoken');
+const moment = require('moment');
+const momenttz = require('moment-timezone');
+const https = require('https');
+const { check, validationResult } = require('express-validator/check');
+const useragent = require('useragent');
+const md5 = require('md5');
+const generator = require('generate-password');
+const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
+const parameters = require('./parameters');
+const i18n = require('i18n');
 
-moment.locale("en-au");
+moment.locale('en-au');
 
 const transporter = nodemailer.createTransport({
   host: parameters.emailSMTP,
@@ -36,5 +37,6 @@ module.exports = {
   md5: md5,
   generator: generator,
   nodemailer: transporter,
-  mongoose: mongoose
+  mongoose: mongoose,
+  i18n: i18n
 };

@@ -49,6 +49,49 @@
     },
     "VALIDACOES": {
       "NOME_MINIMO_OBRIGATORIO": "O nome de {{entidade}} é necessário ter mais que 3 caracteres."
+    },
+    "PARAMETROS": {
+      "ID_GERAL": "SEU ID DE USUÁRIOS GERAL",
+      "RODAPE_EMAIL": "<br><br>Acesse {{nomeProjeto}} web ou o aplicativo para Android / IOS. <br><br>Dúvidas? entre em contato conosco em {{email}}."
+    }
+  },
+  "ENUM": {
+    "ACESSO": {
+      "DESCONECTAR": "Desconectar",
+      "REGISTRO": "Registro",
+      "RESETAR": "Resetar",
+      "ATUALIZAR": "Atualizar"
+    },
+    "ACOES": {
+      "CRIACAO": "Criação",
+      "EDICAO": "Edição",
+      "EXCLUSAO": "Exclusão",
+      "ALTERACAO_STATUS": "Alteração status",
+      "INICIAR": "Iniciar",
+      "PAUSAR": "Pausar",
+      "FINALIZAR": "Finalizar",
+      "ARQUIVAR": "Arquivar"
+    },
+    "NOTIFICACAO": {
+      "BOAS_VINDAS": "Boas Vindas",
+      "ATUALIZACAO_SENHA": "Atualização de senha",
+      "ATUALIZACAO_USUARIO": "Atualizaçao de Usuário",
+      "RESETE_SENHA": "Resetar senha",
+      "CADASTRO": "Cadastro novo",
+      "EXCLUSAO": "Exclusão",
+      "FINALIZACAO": "Finalização",
+      "ALTERACAO_STATUS": "Alteração de status",
+      "EDICAO": "Alteração",
+      "NOVO_DISPOSITIVO": "Novo dispositivo",
+      "FREQUENCIA": "Frequência de repetição",
+      "ATRASOS": "Atrasos"
+    },
+    "SOCKET": {
+      "CONECTADO": "Conectado",
+      "DESCONECTADO": "Desconectado",
+      "NOVA_MENSAGEM_ATUAL": "Nova Mensagem atual",
+      "NOVA_MENSAGEM": "Nova mensagem",
+      "NOTIFICACAO": "Notificação"
     }
   }
 }

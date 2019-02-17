@@ -1,5 +1,6 @@
 const baseLocal = '<%=chaveMongo%>';
 const baseTeste = 'mongodb://api:api@localhost:27017/nomebaseteste';
+const modules = require('./modules');
 
 module.exports = {
   chavePrivada: 'deea259b-f46c-41ad-b274-c5cadc49ff72-api<%= nomeProjeto %>',
@@ -13,7 +14,7 @@ module.exports = {
   emailSeguro: false,
   emailFalha: process.env.EMAIL_FALHAS,
   emailProvisorio: process.env.EMAIL_PROVISORIO,
-  idUsuarioGeral: 'SEU ID DE USUÁRIOS GERAL',
+  idUsuarioGeral: modules.i18n.__('SISTEMA').PARAMETROS.ID_GERAL,
   conexaoMongoTest: baseTeste,
   conexaoMongoDev: baseLocal,
   conexaoMongoProducao: `mongodb://${process.env.MONGO_LOGIN_USUARIO}:${
@@ -30,7 +31,8 @@ module.exports = {
   cron: process.env.CRON_ATIVO == 'true',
   socket: process.env.SOCKET_ATIVO == 'true',
   chaveAnalytics: `${process.env.GOOGLEANALYTICS_CHAVE}`,
-  rodapeMensagem: `<br><br>Acesse <%= nomeProjeto %> ou o aplicativo para Android / IOS. <br><br>Dúvidas? entre em contato conosco: ${
-    process.env.SMTP_EMAIL_USUARIO
-  }.`
+  rodapeMensagem: modules.i18n.__('SISTEMA.PARAMETROS.RODAPE_EMAIL', {
+    nomeProjeto: '<%=nomeProjeto%>',
+    email: process.env.SMTP_EMAIL_USUARIO
+  })
 };
