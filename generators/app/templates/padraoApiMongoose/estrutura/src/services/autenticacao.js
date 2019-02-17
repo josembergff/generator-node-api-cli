@@ -1,5 +1,6 @@
 const modules = require('../config/modules');
 const parameters = require('../config/parameters');
+const i18n = require('i18n');
 
 const resgatarUsuarioTokenReq = async req => {
   const token = req.body.ofacessotoken || req.headers[parameters.chaveReq];
