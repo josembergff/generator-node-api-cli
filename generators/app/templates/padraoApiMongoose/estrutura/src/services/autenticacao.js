@@ -87,12 +87,12 @@ module.exports = {
       } else {
         console.error('Validação de token falhou:', usuario);
         res.status(401).send({
-          msg: 'Token Inválido.'
+          msg: modules.i18n.__('SERVICO').AUTENTICACAO.TOKEN_INVALIDO
         });
       }
     } catch (e) {
       res.status(401).send({
-        msg: 'Falha ao recuperar o token.'
+        msg: modules.i18n.__('SERVICO').AUTENTICACAO.FALHA_TOKEN
       });
       console.error('Validação de token falhou de forma geral:', e);
     }
@@ -103,7 +103,7 @@ module.exports = {
 
     if (!token) {
       res.status(401).send({
-        msg: 'Token Inválido'
+        msg: modules.i18n.__('SERVICO').AUTENTICACAO.TOKEN_INVALIDO
       });
     } else {
       modules.jwt.verify(token, parameters.chavePrivada, function(
@@ -112,14 +112,14 @@ module.exports = {
       ) {
         if (error) {
           res.status(401).send({
-            msg: 'Token Inválido'
+            msg: modules.i18n.__('SERVICO').AUTENTICACAO.TOKEN_INVALIDO
           });
         } else {
           if (decoded.permissoes && decoded.permissoes.includes('admin')) {
             next();
           } else {
             res.status(403).send({
-              msg: 'Esta funcionalidade é restrita para administradores'
+              msg: modules.i18n.__('SERVICO').AUTENTICACAO.SOMENTE_ADM
             });
           }
         }

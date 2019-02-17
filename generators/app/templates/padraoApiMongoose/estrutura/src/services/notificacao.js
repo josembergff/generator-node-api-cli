@@ -1,9 +1,9 @@
-const notificacaoRepo = require("../repositories/notificacao");
-const modules = require("../config/modules");
-const parameters = require("../config/parameters");
-const email = require("../externalServices/email");
-const onesignal = require("../externalServices/onesignal");
-const socket = require("../externalServices/socket");
+const notificacaoRepo = require('../repositories/notificacao');
+const modules = require('../config/modules');
+const parameters = require('../config/parameters');
+const email = require('../externalServices/email');
+const onesignal = require('../externalServices/onesignal');
+const socket = require('../externalServices/socket');
 
 const temMobile = lista => {
   var dataSemanaPassada = new Date();
@@ -12,9 +12,9 @@ const temMobile = lista => {
   return modules.lodash.find(lista, function(o) {
     return (
       o.uuid != null &&
-      o.uuid != "null" &&
+      o.uuid != 'null' &&
       o.idNotificao != null &&
-      o.idNotificao != "null" &&
+      o.idNotificao != 'null' &&
       (o.edicao
         ? o.edicao >= dataSemanaPassada
         : o.criacao >= dataSemanaPassada)
@@ -33,19 +33,16 @@ const finalizar = async (notificacao, enviado) => {
 
     await notificacaoRepo.padrao().editar(notificacao.id, notificacao);
     if (!enviado) {
-      console.info("Notificação editada com o erro ocorrido.");
+      console.info('Notificação editada com o erro ocorrido.');
     }
   } catch (e) {
-    console.error("Falha ao finalizar a Notificação. ", e);
+    console.error('Falha ao finalizar a Notificação. ', e);
   }
 };
 
 const listaEmails = notificacao => {
   const retorno = [];
-  if (
-    notificacao.criador &&
-    notificacao.criador.email
-  ) {
+  if (notificacao.criador && notificacao.criador.email) {
     let novoValor = {
       mobile: temMobile(notificacao.criador.dispositivos),
       online: notificacao.criador.online,
@@ -103,14 +100,19 @@ const enviarNotificacoes = async () => {
               }
             } else {
               console.info(
-                "Notificações desativadas. Email, titulo, mensagem: ",
+                'Notificações desativadas. Email, titulo, mensagem: ',
                 item.email,
                 linha.titulo,
                 linha.mensagem
               );
             }
           } else {
-            let mensagemEmailInvalido = `Email inválido:  ${item.email}`;
+            let mensagemEmailInvalido = modules.i18n.__(
+              'SERVICO.NOTIFICACAO.EMAIL_INVALIDO',
+              {
+                email: item.email
+              }
+            );
             console.info(mensagemEmailInvalido);
             new Error(mensagemEmailInvalido);
           }
@@ -118,17 +120,18 @@ const enviarNotificacoes = async () => {
 
         finalizar(linha, true);
       } catch (ee) {
-        linha.erroEnvio = `Falha na linha de envio da notificação. Erro: ${JSON.stringify(
-          ee
-        )}; Título: ${linha.titulo}, Email: ${itemAtual.email}, Mobile: ${
-          itemAtual.mobile
-        }, Online: ${itemAtual.online}, Emails: ${JSON.stringify(
-          emails
-        )}, Linha: ${index}, Enviar e-mail: ${
-          linha.enviarEmail
-        }, Enviar Push: ${linha.enviarPush}, Enviar Sockeet: ${
-          linha.enviarSocket
-        }`;
+        linha.erroEnvio = modules.i18n.__('SERVICO.NOTIFICACAO.ERRO_ENVIO', {
+          erro: JSON.stringify(ee),
+          titulo: linha.titulo,
+          email: itemAtual.email,
+          mobile: itemAtual.mobile,
+          online: itemAtual.online,
+          emails: JSON.stringify(emails),
+          linha: index,
+          enviarEmail: linha.enviarEmail,
+          enviarPush: linha.enviarPush,
+          enviarSocket: linha.enviarSocket
+        });
         console.error(linha.erroEnvio);
         finalizar(linha, false);
         email.enviarEmail(parameters.emailFalha, linha.titulo, linha.erroEnvio);
@@ -136,7 +139,7 @@ const enviarNotificacoes = async () => {
     });
     return quantidadeNotificacoes;
   } catch (e) {
-    console.error("Falha geral no envio da notificação. ", e);
+    console.error('Falha geral no envio da notificação. ', e);
     return null;
   }
 };
@@ -154,7 +157,7 @@ module.exports = {
   ) => {
     try {
       let idUsuario = null;
-      if (usuario && typeof usuario === "string") {
+      if (usuario && typeof usuario === 'string') {
         idUsuario = usuario;
       } else {
         idUsuario = usuario.id || usuario._id;
@@ -199,25 +202,25 @@ module.exports = {
         .padrao()
         .criar(notificacao)
         .then(data => {
-          console.info("Notificação cadastrado com sucesso!");
+          console.info('Notificação cadastrado com sucesso!');
           if (imediato) {
             enviarNotificacoes();
           }
         })
         .catch(data => {
-          console.error("Falha ao criar a Notificação. ", notificacao, data);
+          console.error('Falha ao criar a Notificação. ', notificacao, data);
         });
     } catch (e) {
-      console.error("Falha ao salvar a Notificação. ", e);
+      console.error('Falha ao salvar a Notificação. ', e);
     }
   },
 
   excluir: async notificacao => {
     try {
       await notificacaoRepo.padrao().excluir(notificacao.id);
-      console.info("Notificação excluído com sucesso!");
+      console.info('Notificação excluído com sucesso!');
     } catch (e) {
-      console.error("Falha ao excluir a Notificação. ", e);
+      console.error('Falha ao excluir a Notificação. ', e);
     }
   },
 
@@ -226,7 +229,7 @@ module.exports = {
       const lista = await notificacaoRepo.listaParaEnvio();
       return lista;
     } catch (e) {
-      console.error("Falha ao listar as Notificacoes. ", e);
+      console.error('Falha ao listar as Notificacoes. ', e);
       return null;
     }
   },
@@ -236,7 +239,7 @@ module.exports = {
       const objeto = await notificacaoRepo.buscarPorId(id);
       return objeto;
     } catch (e) {
-      console.error("Falha ao busca o Notificação. ", e);
+      console.error('Falha ao busca o Notificação. ', e);
       return null;
     }
   }

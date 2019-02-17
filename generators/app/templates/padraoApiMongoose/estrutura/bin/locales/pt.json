@@ -105,5 +105,16 @@
       "ACESSO": "Obrigatório o tipo de acesso.",
       "ACAO": "Obrigatório o tipo de ação."
     }
+  },
+  "SERVICO": {
+    "AUTENTICACAO": {
+      "TOKEN_INVALIDO": "Token Inválido.",
+      "FALHA_TOKEN": "Falha ao recuperar o token.",
+      "SOMENTE_ADM": "Esta acesso é restrito somente para administradores."
+    },
+    "NOTIFICACAO": {
+      "EMAIL_INVALIDO": "Email inválido: {{email}}.",
+      "ERRO_ENVIO": "Falha na linha de envio da notificação. Erro: {{erro}}, Título: {{titulo}}, Email: {{email}}, Mobile: {{mobile}}, Online: {{online}}, Emails: {{emails}}, Linha: {{linha}}, Enviar e-mail: {{enviarEmail}}, Enviar Push: {{enviarPush}}, Enviar Socket: {{enviarSocker}}"
+    }
   }
 }
